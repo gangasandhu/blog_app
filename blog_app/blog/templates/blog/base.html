@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+
+    </head>
+    <body>
+    
+      <nav>
+        <div class="container mx-auto px-12 py-2 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="{% url 'blog-home' %}" class="text-purple-500 font-bold text-lg">Ganga's Blog</a>
+            </div>
+            <div class="hidden md:flex flex-grow items-center justify-end">
+                <a href="{% url 'blog-home' %}" class="text-purple-700 mx-4">Home</a>
+                <a href="#blog-posts" class="text-purple-700 mx-4">Posts</a>
+                <a href="{% url 'blog-about' %}" class="text-purple-700 mx-4">About</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'create-post' %}" class="text-purple-700 mx-4">Create Post</a>
+                <a href="{% url 'logout' %}" class="text-purple-700 mx-4">Logout</a>
+                <div class="flex items-center ml-4">
+                    <a href="{% url 'profile' %}">
+                        <img class="w-8 h-8 rounded-full" src="{{ user.profile.avatar.url }}" alt="Profile Avatar">
+                    </a>
+                </div>
+                {% else %}
+                <a href="{% url 'login' %}" class="text-purple-700 mx-4">Login</a>
+                {% endif %}
+            </div>
+            <div class="md:hidden flex items-center">
+            {% if user.is_authenticated %}
+              <div class="flex items-center mx-4">
+                <a href="{% url 'profile' %}">
+                    <img class="w-8 h-8 rounded-full" src="{{ user.profile.avatar.url }}" alt="Profile Avatar">
+                </a>
+            </div>
+            {% endif %}
+                <button id="mobile-menu-toggle" class="text-purple-500 focus:outline-none">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg7
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white py-2 text-center">
+            <a href="{% url 'blog-home' %}" class="block text-purple-700 px-4 py-2">Home</a>
+            <a href="#" class="block text-purple-700 px-4 py-2">Contact</a>
+            <a href="#" class="block text-purple-700 px-4 py-2">About</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'create-post' %}" class="block text-purple-700 px-4 py-2">Create Post</a>
+            <a href="{% url 'logout' %}" class="block text-purple-700 px-4 py-2">Logout</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="block text-purple-700 px-4 py-2">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+    
+    
+    
+
+        {% block body %}{% endblock %}
+
+        <!--footer-->
+     
+        <footer class="relative bg-purple-50 pt-8 pb-6 mt-12">    
+              <div class="flex flex-wrap items-center md:justify-between justify-center">
+                <div class="w-full md:w-4/12 px-4 mx-auto text-center">
+                  <div class="text-sm text-blueGray-500 font-semibold py-1">
+                    Copyright © <span id="get-current-year">2023</span><a href="https://www.creative-tim.com/product/notus-js" class="text-blueGray-500 hover:text-gray-800" target="_blank"> Portfolio: 
+                    <a href="https://www.creative-tim.com?ref=njs-profile" class="text-blueGray-500 hover:text-blueGray-800">Ganga Singh</a>.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+          
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Mobile menu toggle
+                var mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+                var mobileMenu = document.getElementById("mobile-menu");
+        
+                mobileMenuToggle.addEventListener("click", function () {
+                    mobileMenu.classList.toggle("hidden");
+                });
+        
+                // Mobile user menu toggle
+                var mobileUserMenuToggle = document.getElementById("mobile-user-menu-toggle");
+                var mobileUserMenu = document.getElementById("mobile-user-menu");
+        
+                mobileUserMenuToggle.addEventListener("click", function () {
+                    mobileUserMenu.classList.toggle("hidden");
+                });
+            });
+        </script>
+        
+        
+        <script src="" async defer></script>
+    </body>
+</html>

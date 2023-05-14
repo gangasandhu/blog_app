@@ -1,0 +1,32 @@
+/* blog/post.css */
+
+.post {
+    margin-bottom: 50px;
+  }
+  
+  .post h2 {
+    margin: 0;
+    font-size: 32px;
+  }
+  
+  .post .meta {
+    margin-bottom: 20px;
+  }
+  
+  .post .meta span {
+    margin-right: 10px;
+  }
+  
+  .post .image img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .post .content {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  
